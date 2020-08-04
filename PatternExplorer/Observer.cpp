@@ -28,11 +28,6 @@ namespace Observer {
 		user->attach(this);
 	}
 
-	void UI::render(string userInput)
-	{
-		cout << userInput << endl;
-	}
-
 	void MainAppObserver::update(UI& ui)
 	{
 		switch (user->getState())

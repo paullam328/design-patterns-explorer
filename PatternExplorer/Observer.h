@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include "UI.h"
 
 using namespace std;
 
@@ -14,7 +15,6 @@ namespace Observer {
 	};
 
 	class FacebookUser;
-	class UI;
 
 	class IFacebookObserver {
 	public:
@@ -47,10 +47,5 @@ namespace Observer {
 	private:
 		EFacebookState eFacebookState = EFacebookState::ADD_FRIEND;
 		vector<IFacebookObserver*> observers;
-	};
-
-	class UI {
-	public:
-		void render(string userInput);
 	};
 }

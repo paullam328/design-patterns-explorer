@@ -3,19 +3,27 @@
 
 #include <iostream>
 #include "Observer.h"
-
-using namespace Observer;
+#include "Builder.h"
 
 int main()
 {
     UI ui;
 
-    shared_ptr<FacebookUser> user = make_shared<FacebookUser>();
-    auto pMainAppObserver = make_shared<MainAppObserver>(user);
-    auto pMessengerObserver = make_shared<MessengerObserver>(user);
+    ui.render("1. Observer Pattern:");
 
-    user->setState(EFacebookState::ADD_FRIEND, ui);
-    user->setState(EFacebookState::BLOCK_FRIEND, ui);
+    shared_ptr<Observer::FacebookUser> user = make_shared<Observer::FacebookUser>();
+    auto pMainAppObserver = make_shared<Observer::MainAppObserver>(user);
+    auto pMessengerObserver = make_shared<Observer::MessengerObserver>(user);
+
+    user->setState(Observer::EFacebookState::ADD_FRIEND, ui);
+    user->setState(Observer::EFacebookState::BLOCK_FRIEND, ui);
+
+    ui.render("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    ui.render("2. Builder Pattern:");
+
+    Builder::Manager director;
+    shared_ptr<Builder::Client> client = make_shared<Builder::Client>();
+    client->MakeMeABurger(director, ui);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
