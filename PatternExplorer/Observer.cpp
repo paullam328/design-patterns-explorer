@@ -3,7 +3,7 @@
 
 namespace Observer {
 
-	void FacebookUser::attach(IFacebookObserver* observer)
+	void FacebookUser::attach(shared_ptr<IFacebookObserver> observer)
 	{
 		observers.push_back(observer);
 	}
@@ -12,7 +12,10 @@ namespace Observer {
 	{
 		for (int i = 0; i < observers.size(); i++)
 		{
-			observers[i]->update(ui);
+			if (!observers[i].expired())
+			{
+				observers[i].lock()->update(ui);
+			}
 		}
 	}
 
@@ -23,9 +26,8 @@ namespace Observer {
 	}
 
 	IFacebookObserver::IFacebookObserver(shared_ptr<FacebookUser> _user)
-		: user(move(_user)) 
+		: user(move(_user))
 	{
-		user->attach(this);
 	}
 
 	void MainAppObserver::update(UI& ui)

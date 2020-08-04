@@ -24,14 +24,14 @@ namespace Observer {
 		shared_ptr<FacebookUser> user;
 	};
 
-	class MainAppObserver : IFacebookObserver
+	class MainAppObserver : public IFacebookObserver
 	{
 	public:
 		MainAppObserver(shared_ptr<FacebookUser> _user) : IFacebookObserver(move(_user)) {};
 		virtual void update(UI& ui);
 	};
 
-	class MessengerObserver : IFacebookObserver {
+	class MessengerObserver : public IFacebookObserver {
 	public:
 		MessengerObserver(shared_ptr<FacebookUser> _user) : IFacebookObserver(move(_user)) {};
 		virtual void update(UI& ui);
@@ -39,13 +39,13 @@ namespace Observer {
 
 	class FacebookUser { //is the Subject
 	public:
-		void attach(IFacebookObserver* observer);
+		void attach(shared_ptr<IFacebookObserver> observer);
 		void notifyAllObservers(UI& ui);
 		void setState(const EFacebookState& eNewFacebookState, UI& ui);
 		inline EFacebookState getState() { return eFacebookState; }
 
 	private:
 		EFacebookState eFacebookState = EFacebookState::ADD_FRIEND;
-		vector<IFacebookObserver*> observers;
+		vector<weak_ptr<IFacebookObserver>> observers;
 	};
 }
