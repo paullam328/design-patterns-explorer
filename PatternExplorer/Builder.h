@@ -34,8 +34,6 @@ namespace Builder {
 		virtual void AddVeggies(UI& ui) = 0;
 		virtual void AddMeat(UI& ui) = 0;
 		virtual void AddBread(UI& ui) = 0;
-	protected:
-		shared_ptr<Hamburger> hamburger;
 	};
 
 	class Chef : public IHamburgerBuilder {
