@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Observer.h"
 #include "Builder.h"
+#include "Adapter.h"
 
 int main()
 {
@@ -24,6 +25,13 @@ int main()
     Builder::Manager director;
     shared_ptr<Builder::Client> client = make_shared<Builder::Client>();
     client->MakeMeABurger(director, ui);
+
+	ui.render("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+	ui.render("3. Adapter Pattern:");
+
+    Adapter::Client adaptingClient;
+    adaptingClient.Calculate();
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

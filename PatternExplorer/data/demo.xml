@@ -1,0 +1,17 @@
+<Dependency>
+   <Package>
+      xmlMetadata
+   </Package>
+   <Header>
+      xmlMetadata.h
+   </Header>
+   <Header_path>
+      C:\Dependency\xmlMetadata\xmlMetadata.h
+   </Header_path>
+   <Implementation>
+      xmlMetadata.cpp
+   </Implementation>
+   <Implementation_path>
+      C:\Dependency\xmlMetadata\xmlMetadata.cpp
+   </Implementation_path>
+</Dependency>
