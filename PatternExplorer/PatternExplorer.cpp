@@ -16,6 +16,9 @@ int main()
     auto pMainAppObserver = make_shared<Observer::MainAppObserver>(user);
     auto pMessengerObserver = make_shared<Observer::MessengerObserver>(user);
 
+    user->attach(pMainAppObserver);
+    user->attach(pMessengerObserver);
+
     user->setState(Observer::EFacebookState::ADD_FRIEND, ui);
     user->setState(Observer::EFacebookState::BLOCK_FRIEND, ui);
 
